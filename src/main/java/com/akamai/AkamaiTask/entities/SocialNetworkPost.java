@@ -25,4 +25,14 @@ public class SocialNetworkPost {
     @Column(name = "view_count")
     private Long viewCount;
 
+    public SocialNetworkPost(){
+
+    }
+    public SocialNetworkPost(Long id, Date postDate, String author, String content, Long viewCount) {
+        this.id = id;
+        this.postDate = postDate;
+        this.author = author;
+        this.content = content;
+        this.viewCount = viewCount;
+    }
 }

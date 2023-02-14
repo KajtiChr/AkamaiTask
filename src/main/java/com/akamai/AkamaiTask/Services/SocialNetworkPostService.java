@@ -14,6 +14,10 @@ public class SocialNetworkPostService {
     @Autowired
     private SocialNetworkPostRepository socialNetworkPostRepository;
 
+    public SocialNetworkPostService(SocialNetworkPostRepository studentRepository) {
+        this.socialNetworkPostRepository = studentRepository;
+    }
+
     public List<SocialNetworkPost> getAllPosts(){
         List<SocialNetworkPost> socialNetworkPosts = new ArrayList<>();
         socialNetworkPostRepository.findAll().forEach((socialNetworkPosts::add));
