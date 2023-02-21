@@ -4,10 +4,9 @@ import com.akamai.AkamaiTask.DAO.SocialNetworkPostRepository;
 import com.akamai.AkamaiTask.entities.SocialNetworkPost;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class SocialNetworkPostService {
@@ -32,5 +31,29 @@ public class SocialNetworkPostService {
                 .limit(10)
                 .forEach(socialNetworkPosts::add);
         return socialNetworkPosts;
+    }
+
+    public SocialNetworkPost pushPost(SocialNetworkPost socialNetworkPost){
+        socialNetworkPost.setPostDate(new Date());
+        return socialNetworkPostRepository.save(socialNetworkPost);
+    }
+
+
+    @Transactional(rollbackFor = Exception.class)
+    public Optional<SocialNetworkPost> changePost(SocialNetworkPost socialNetworkPost, Long id){
+
+        return Optional.of(socialNetworkPostRepository.findById(id)
+                .map(post -> {
+                    post.setAuthor(socialNetworkPost.getAuthor());
+                    post.setContent(socialNetworkPost.getContent());
+                    post.setViewCount(socialNetworkPost.getViewCount());
+                    return socialNetworkPostRepository.save(post);
+
+                })
+                .orElseGet(() -> socialNetworkPostRepository.save(socialNetworkPost)));
+    }
+
+    public void delete(Long id) {
+         socialNetworkPostRepository.deleteById(id);
     }
 }

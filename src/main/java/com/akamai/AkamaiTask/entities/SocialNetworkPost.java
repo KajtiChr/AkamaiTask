@@ -12,7 +12,7 @@ import java.util.Date;
 @Component
 public class SocialNetworkPost {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -28,6 +28,7 @@ public class SocialNetworkPost {
     public SocialNetworkPost(){
 
     }
+
     public SocialNetworkPost(Long id, Date postDate, String author, String content, Long viewCount) {
         this.id = id;
         this.postDate = postDate;
