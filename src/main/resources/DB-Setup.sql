@@ -6,5 +6,6 @@ CREATE TABLE `SocialNetworkPost`(
     `post_date` DATETIME,
     `author` varchar(40) DEFAULT NULL,
     `content` text DEFAULT NULL,
-    `view_count` BIT(25)
+    `view_count` BIT(25),
+    PRIMARY KEY(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
