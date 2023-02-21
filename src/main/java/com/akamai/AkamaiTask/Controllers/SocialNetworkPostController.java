@@ -17,8 +17,6 @@ public class SocialNetworkPostController {
 
     @Autowired
     private SocialNetworkPostService socialNetworkPostService;
-    @Autowired
-    private SocialNetworkPostRepository socialNetworkPostRepository;
 
     @RequestMapping("/posts")
     public List<SocialNetworkPost> getAllPost(){
