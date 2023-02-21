@@ -11,14 +11,35 @@ Solution obtain:
 - Decided to make 2 endpoints (1 from task and additional one that gets all data)
 - Test cases for Controller and Service
 
-## 2. Needed improvements
+## 2. Test Cases
+
+### GetMapping
+localhost:8080/posts - to get all records
+localhost:8080/topViews - to get Top 10 Posts
+
+### PutMapping
+localhost:8080/put?id={needed value} - modify specify Post with a given ID and Request Body
+with a body type raw/jason. Example:
+{
+"author": "A",
+"content": "C",
+"viewCount": 250
+}
+
+### PostMapping
+localhost:8080/post - Request body with a body type raw/json. Can be used same example as PutMapping.
+
+### DeleteMapping
+localhost:8080/delete?id=19 - void method that will print nothing in return, might to add some logging stuff or Response Status message
+
+## 3. Needed improvements
 
 So for sure my test are poorly written, so that's the obvious things to work with.
 Wasn't sure if CrudRepository has to be used for this particular solution or I can use JPA Repository.
 I'm not sure if getting more features without proper testing will be worth showing that's why I focused on getting knowledge with testing.
 
 
-## 3. What would I add + plan/tools/classes I would use
+## 4. What would I add + plan/tools/classes I would use
 
 So from my perspective there's several pieces that might be working in this project.
 I do not know what's the purpose of this solution would be, but I would provide more Crud operations, Page inside JPARepository interface for manipulating size, page number and offset: ```Page<?> findBySpecifyParameter(@RequestParam(${specifyParam}) String specifyParam, Pageable pageable);``` . I would also add db column Users.
@@ -66,6 +87,9 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
     }
 }
 ```
+
+
+
 
 ## Closure
 

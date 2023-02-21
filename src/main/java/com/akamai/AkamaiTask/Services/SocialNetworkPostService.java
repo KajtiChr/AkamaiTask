@@ -53,7 +53,12 @@ public class SocialNetworkPostService {
                 .orElseGet(() -> socialNetworkPostRepository.save(socialNetworkPost)));
     }
 
-    public void delete(Long id) {
-         socialNetworkPostRepository.deleteById(id);
+    public boolean deleteAndGiveResponse(Long id) {
+         if(socialNetworkPostRepository.existsById(id)){
+             socialNetworkPostRepository.deleteById(id);
+             return true;
+         } else{
+           return false;
+         }
     }
 }
